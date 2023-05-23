@@ -16,11 +16,35 @@
 </head>
 
 <body>
-  <article style="
+    <%- include('partials/navbar.html', { siteMeta }) %>
+    <header class="Header">
+      <% if (siteMeta.cover) { %>
+        <div class="Header__Cover">
+          <img src="<%= siteMeta.cover %>">
+        </div>
+      <% } %>
+      <div class="Header__Spacer <% if (!siteMeta.cover) { %>Header__Spacer--NoCover<% } %>">
+      </div>
+      <% if (siteMeta.iconUrl) { %>
+        <div class="Header__Icon">
+          <span><img class="inline-img-icon" src="<%= siteMeta.iconUrl %>"></span>
+        </div>
+      <% } %>
+      <h1 class="Header__Title"><%= siteMeta.title %></h1>
+      <% if (siteMeta.description) { %>
+        <div class="Header__Desc">
+          <span class="Header__DescBigQuoteMark">&ldquo;</span>
+          <%- siteMeta.descriptionHTML %>
+          <span class="Header__DescBigQuoteMark">&bdquo;</span>
+        </div>
+      <% } %>
+    </header>
+    <article style="
     display: grid;
     place-items: center;
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
+    background: #242424;
     ">
     <h2 style="
       margin: 0;
